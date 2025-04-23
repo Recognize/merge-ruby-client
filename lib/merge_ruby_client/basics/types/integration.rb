@@ -6,7 +6,7 @@ require "json"
 
 module Merge
   module Basics
-    class IntegrationMetadata
+    class Integration
       # @return [String]
       attr_reader :name
       # @return [String]
@@ -36,7 +36,7 @@ module Merge
       # @param color [String]
       # @param categories [Array<String>]
       # @param additional_properties [OpenStruct] Additional properties unmapped to the current class definition
-      # @return [Merge::Basics::IntegrationMetadata]
+      # @return [Merge::Basics::Integration]
       def initialize(name: OMIT, slug: OMIT, image: OMIT, square_image: OMIT, color: OMIT, categories: OMIT, enabled_categories: OMIT, additional_properties: nil)
         @name = name if name != OMIT
         @slug = slug if slug != OMIT
@@ -59,10 +59,10 @@ module Merge
         end
       end
 
-      # Deserialize a JSON object to an instance of IntegrationMetadata
+      # Deserialize a JSON object to an instance of Integration
       #
       # @param json_object [String]
-      # @return [Merge::Basics::IntegrationMetadata]
+      # @return [Merge::Basics::Integration]
       def self.from_json(json_object:)
         struct = JSON.parse(json_object, object_class: OpenStruct)
         parsed_json = JSON.parse(json_object)
@@ -86,7 +86,7 @@ module Merge
         )
       end
 
-      # Serialize an instance of IntegrationMetadata to a JSON object
+      # Serialize an instance of Integration to a JSON object
       #
       # @return [String]
       def to_json(*_args)

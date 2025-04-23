@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 require_relative "../../../requests"
-require_relative "../types/integration_metadata"
+require_relative "../types/integration"
 
-# client = Merge::Basics::IntegrationMetadata::Client.new(request_client: request_client)
+# client = Merge::Basics::IntegrationClient::Client.new(request_client: request_client)
 # integrations = client.list
 
 module Merge
   module Basics
-    class IntegrationMetadataClient
+    class IntegrationClient
       # @param request_client [Merge::RequestClient]
-      # @return [Merge::Basics::IntegrationMetadata::Client]
+      # @return [Merge::Basics::IntegrationClient::Client]
       def initialize(request_client:)
         @request_client = request_client
       end
@@ -18,7 +18,7 @@ module Merge
       # Returns a list of all integrations available in Merge
       #
       # @param request_options [Merge::RequestOptions]
-      # @return [Array<Merge::Basics::IntegrationMetadata>] List of integrations with their metadata
+      # @return [Array<Merge::Basics::IntegrationClient>] List of integrations with their metadata
       def list(request_options: nil)
         response = @request_client.conn.get do |req|
           req.options.timeout = request_options.timeout_in_seconds unless request_options&.timeout_in_seconds.nil?
@@ -39,14 +39,14 @@ module Merge
         end
 
         JSON.parse(response.body)["results"].map do |integration|
-          Merge::Basics::IntegrationMetadata.from_json(json_object: integration.to_json)
+          Merge::Basics::Integration.from_json(json_object: integration.to_json)
         end
       end
     end
 
-    class AsyncIntegrationMetadataClient
+    class AsyncIntegrationClient
       # @param request_client [Merge::AsyncRequestClient]
-      # @return [Merge::Basics::IntegrationMetadata::AsyncClient]
+      # @return [Merge::Basics::IntegrationClient::AsyncClient]
       def initialize(request_client:)
         @request_client = request_client
       end
@@ -54,7 +54,7 @@ module Merge
       # Returns a list of all integrations available in Merge
       #
       # @param request_options [Merge::RequestOptions]
-      # @return [Array<Merge::Basics::IntegrationMetadata>] List of integrations with their metadata
+      # @return [Array<Merge::Basics::Integration>] List of integrations with their metadata
       def list(request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -76,7 +76,7 @@ module Merge
           end
 
           JSON.parse(response.body)["results"].map do |integration|
-            Merge::Basics::IntegrationMetadata.from_json(json_object: integration.to_json)
+            Merge::Basics::Integration.from_json(json_object: integration.to_json)
           end
         end
       end
