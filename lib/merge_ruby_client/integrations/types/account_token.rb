@@ -45,7 +45,8 @@ module Merge
           integration = nil
         else
           integration = parsed_json["integration"].to_json
-          integration = Merge::Integrations::AccountIntegration.from_json(json_object: integration)
+          # TODO - Fix this
+          # integration = Merge::Integrations::AccountIntegration.from_json(json_object: integration)
         end
         id = parsed_json["id"]
         new(
@@ -71,7 +72,7 @@ module Merge
       # @return [Void]
       def self.validate_raw(obj:)
         obj.account_token.is_a?(String) != false || raise("Passed value for field obj.account_token is not the expected type, validation failed.")
-        Merge::Integrations::AccountIntegration.validate_raw(obj: obj.integration)
+        # Merge::Integrations::AccountIntegration.validate_raw(obj: obj.integration)
         obj.id.is_a?(String) != false || raise("Passed value for field obj.id is not the expected type, validation failed.")
       end
     end

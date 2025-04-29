@@ -37,7 +37,7 @@ module Merge
       def initialize(request_client:)
         @provider = Merge::Integrations::AsyncProviderClient.new(request_client: request_client)
         @link_token = Merge::Integrations::AsyncLinkTokenClient.new(request_client: request_client)
-        @account_token = Merge::Integrations::AccountTokenClient.new(request_client: request_client)
+        @account_token = Merge::Integrations::AsyncAccountTokenClient.new(request_client: request_client)
       end
     end
   end
