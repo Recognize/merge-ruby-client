@@ -72,7 +72,7 @@ module Merge
       #    environment: Merge::Environment::PRODUCTION,
       #    api_key: "YOUR_AUTH_TOKEN"
       #  )
-      #  api.Integrations.account_token.retrieve(public_token: "public_token")
+      #  api.integrations.account_token.retrieve(public_token: "public_token")
       def retrieve(public_token:, request_options: nil)
         Async do
           response = @request_client.conn.get do |req|
@@ -90,7 +90,7 @@ module Merge
             unless request_options.nil? || request_options&.additional_body_parameters.nil?
               req.body = { **(request_options&.additional_body_parameters || {}) }.compact
             end
-            req.url "#{@request_client.get_url(request_options: request_options)}/Integrations/v1/account-token/#{public_token}"
+            req.url "#{@request_client.get_url(request_options: request_options)}/integrations/account-token/#{public_token}"
           end
           Merge::Integrations::AccountToken.from_json(json_object: response.body)
         end
