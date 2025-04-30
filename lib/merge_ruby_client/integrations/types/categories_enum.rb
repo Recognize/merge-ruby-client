@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+module Merge
+  module Integrations
+    # * `hris` - hris
+    #  * `ats` - ats
+    #  * `accounting` - accounting
+    #  * `ticketing` - ticketing
+    #  * `crm` - crm
+    #  * `mktg` - mktg
+    #  * `filestorage` - filestorage
+    # * `integrations` - integrations
+    class CategoriesEnum
+      HRIS = "hris"
+      ATS = "ats"
+      ACCOUNTING = "accounting"
+      TICKETING = "ticketing"
+      CRM = "crm"
+      MKTG = "mktg"
+      FILESTORAGE = "filestorage"
+      INTEGRATIONS = "integrations"
+    end
+  end
+end
