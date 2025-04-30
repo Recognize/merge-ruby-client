@@ -51,7 +51,7 @@ module Merge
       @filestorage = Merge::Filestorage::Client.new(request_client: @request_client)
       @ticketing = Merge::Ticketing::Client.new(request_client: @request_client)
       @accounting = Merge::Accounting::Client.new(request_client: @request_client)
-      @integrations = Merge::IntegrationClient.new(request_client: @request_client)
+      @integrations = Merge::Integrations::Client.new(request_client: @request_client)
     end
   end
 
@@ -94,7 +94,7 @@ module Merge
       @filestorage = Merge::Filestorage::AsyncClient.new(request_client: @async_request_client)
       @ticketing = Merge::Ticketing::AsyncClient.new(request_client: @async_request_client)
       @accounting = Merge::Accounting::AsyncClient.new(request_client: @async_request_client)
-      @integrations = Merge::IntegrationClient.new(request_client: @async_request_client)
+      @integrations = Merge::Integrations::AsyncClient.new(request_client: @async_request_client)
     end
   end
 end
